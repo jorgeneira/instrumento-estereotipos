@@ -34,6 +34,16 @@ const rootVm = new Vue({
 
     },
 
+    computed: {
+
+        itemCounter: function () {
+
+            return (this.itemActive + 1) + '/'+this.items.length;
+
+        }
+
+    },
+
     methods: {
 
         start: function () {
@@ -100,7 +110,6 @@ const rootVm = new Vue({
                 }
                 
             }.bind(this), 1000);
-
 
         },
         

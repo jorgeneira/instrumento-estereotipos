@@ -34,4 +34,10 @@ class TestController extends Controller {
 
 	}
 
+	public function consentimiento(){
+
+		return view('consentimiento');
+
+	}
+
 }

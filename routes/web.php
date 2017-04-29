@@ -17,6 +17,8 @@ Route::get('/', function (){
 
 Route::get('estudio-perspectivas-2017', 'TestController@index');
 
+Route::get('estudio-perspectivas-2017/consentimiento-informado', 'TestController@consentimiento');
+
 Route::get('items', 'ItemsController@index');
 
 Route::post('response', 'TestController@store');

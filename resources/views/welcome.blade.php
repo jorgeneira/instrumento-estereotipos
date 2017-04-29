@@ -15,9 +15,13 @@
 <div id="mainContent" class="mainContent">
 
     <div class="counter" v-if="itemVisible" v-cloak>
-        <i class="fa fa-clock-o counter-icon"></i>
-        <span v-text="timer+'s'"></span>
+        <div class="item-counter" v-text="itemCounter"></div>
+        <div class="counter-time">
+            <i class="fa fa-clock-o counter-icon"></i>
+            <span v-text="timer+'s'"></span>
+        </div>
     </div>
+
 
     <div class="section" v-if="section === 1">
 
@@ -47,7 +51,7 @@
         </div>
         <br>
         <label>
-            <input type="checkbox" v-model="accepted"> He leído y acepto el <a href="#">Consentimiento Informado</a>
+            <input type="checkbox" v-model="accepted"> He leído y acepto el <a href="/estudio-perspectivas-2017/consentimiento-informado">Consentimiento Informado</a>
         </label> <br> <br>
         <button type="button" class="btn-primary" v-on:click="start">Comenzar</button>
 
@@ -107,6 +111,8 @@
 
         <p>Gracias por su participación. Sí desea más información de este estudio, puede escribir a <a
                     href="mailto:jeneiraa@unal.edu.co">jeneiraa@unal.edu.co</a></p>
+
+        <p>Perspectivas Contemporaneas en Psicología Social - 2017-1</p>
 
     </div>
 
