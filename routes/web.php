@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'TestController@index');
+Route::get('/', function (){
+	return redirect()->to('/estudio-perspectivas-2017');
+});
+
+Route::get('estudio-perspectivas-2017', 'TestController@index');
 
 Route::get('items', 'ItemsController@index');
 
