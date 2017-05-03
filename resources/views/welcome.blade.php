@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Perspectivas</title>
+    <title>CPERC - Perspectivas 2017-1</title>
 
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 
