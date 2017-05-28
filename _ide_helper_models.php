@@ -24,6 +24,26 @@ namespace App{
 
 namespace App{
 /**
+ * App\EmotionItems
+ *
+ * @property int $id
+ * @property int $target
+ * @property string $gender
+ * @property string $mode
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\EmotionItems whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\EmotionItems whereGender($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\EmotionItems whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\EmotionItems whereMode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\EmotionItems whereTarget($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\EmotionItems whereUpdatedAt($value)
+ */
+	class EmotionItems extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\Item
  *
  * @property int $id
@@ -47,6 +67,7 @@ namespace App{
  * @property string $region
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Response[] $responses
  * @method static \Illuminate\Database\Query\Builder|\App\Participant whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Participant whereEdad($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Participant whereId($value)
@@ -74,10 +95,12 @@ namespace App{
  *
  * @property int $id
  * @property int $item_id
+ * @property int $participant_id
  * @property string $text
  * @property int $reaction_time
  * @method static \Illuminate\Database\Query\Builder|\App\Response whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Response whereItemId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Response whereParticipantId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Response whereReactionTime($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Response whereText($value)
  */
@@ -88,21 +111,7 @@ namespace App{
 /**
  * App\User
  *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
 }

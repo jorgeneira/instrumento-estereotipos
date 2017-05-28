@@ -22,3 +22,13 @@ Route::get('estudio-perspectivas-2017/consentimiento-informado', 'TestController
 Route::get('items', 'ItemsController@index');
 
 Route::post('response', 'TestController@store');
+
+Route::group(['prefix' => 'reconocimiento-emociones'], function(){
+
+	Route::get('/', 'EmotionsController@index');
+
+	Route::get('generator', 'EmotionsController@generator');
+
+	Route::post('generator', 'EmotionsController@generatorStore');
+
+});
