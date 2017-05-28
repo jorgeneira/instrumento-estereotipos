@@ -87,6 +87,8 @@
 
     <div class="section" v-if="section === 3" v-cloak>
 
+        <p>Haga click en el botón para Terminar</p>
+
         <div class="item-controls">
             <button type="button" class="btn-primary" v-on:click="storeResponses">Guardar Respuestas</button>
         </div>

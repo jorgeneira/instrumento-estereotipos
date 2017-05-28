@@ -12,7 +12,7 @@ const rootVm = new Vue({
 
         timer:0,
 
-        maxResponseTime:60,
+        maxResponseTime:120,
 
         itemVisible:false,
 
@@ -26,7 +26,7 @@ const rootVm = new Vue({
 
         zurdo:false,
 
-        items: 54,
+        items: 5,
 
         itemsLoaded:0,
 
@@ -197,13 +197,13 @@ const rootVm = new Vue({
 
                 participant: {
                     age: this.age,
-                    zurdo: this.zurdo
+                    zurdo: +this.zurdo
                 },
                 responses: this.responses
 
             };
 
-            $.post('/response-emotions', finalResponses, function (data) {
+            $.post('/reconocimiento-emociones/response', finalResponses, function (data) {
 
                 if(data.status === 'ok'){
 

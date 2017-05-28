@@ -31,6 +31,8 @@ Route::group(['prefix' => 'reconocimiento-emociones'], function(){
 
 	Route::post('generator', 'EmotionsController@generatorStore');
 
+	Route::post('response', 'EmotionsController@store');
+
 	Route::get('consentimiento-informado', 'EmotionsController@consentimiento');
 
 });

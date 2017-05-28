@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EmotionItems;
+use App\EmotionParticipant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -156,6 +157,24 @@ class EmotionsController extends Controller {
 	public function consentimiento(){
 
 		return view('consentimientoEmotions');
+
+	}
+
+	public function store(Request $request) {
+
+		$participant = new EmotionParticipant();
+
+		$participant->edad   = $request->input('participant.age');
+		$participant->zurdo = $request->input('participant.zurdo');
+
+		$participant->save();
+
+		$participant->responses()->createMany($request->responses);
+
+		return [
+			'status' => 'ok'
+		];
+
 
 	}
 }
