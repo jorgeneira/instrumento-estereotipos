@@ -26,7 +26,7 @@ const rootVm = new Vue({
 
         zurdo:false,
 
-        items: 5,
+        items: 54,
 
         itemsLoaded:0,
 
