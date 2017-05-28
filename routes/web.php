@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function (){
-	return redirect()->to('/estudio-perspectivas-2017');
+	return redirect()->to('/reconocimiento-emociones');
 });
 
 Route::get('estudio-perspectivas-2017', 'TestController@index');
@@ -30,5 +30,7 @@ Route::group(['prefix' => 'reconocimiento-emociones'], function(){
 	Route::get('generator', 'EmotionsController@generator');
 
 	Route::post('generator', 'EmotionsController@generatorStore');
+
+	Route::get('consentimiento-informado', 'EmotionsController@consentimiento');
 
 });

@@ -10114,7 +10114,7 @@ const rootVm = new Vue({
 
     data: {
 
-        section:1,
+        section:0,
 
         running:false,
 
@@ -10122,25 +10122,27 @@ const rootVm = new Vue({
 
         timer:0,
 
-        maxResponseTime:10,
+        maxResponseTime:60,
 
         itemVisible:false,
 
-        itemActive:0,
+        itemActive:1,
 
         itemTimestamp:0,
 
-        itemText: '',
-
-        response:'',
-
         responses:[],
-
-        region:8,
 
         age:18,
 
-        items: window.items
+        zurdo:false,
+
+        items: 54,
+
+        itemsLoaded:0,
+
+        images:{},
+
+        response:2
 
     },
 
@@ -10148,9 +10150,32 @@ const rootVm = new Vue({
 
         itemCounter: function () {
 
-            return (this.itemActive + 1) + '/'+this.items.length;
+            return (this.itemActive ) + '/'+this.items;
+
+        },
+        percentLoaded: function () {
+
+            return Math.round(this.itemsLoaded / this.items * 100) + '%';
+
+        },
+
+        activeImg:function () {
+
+            return this.images[this.itemActive].outerHTML;
+
+        },
+
+        leftKey: function () {
+
+            return this.zurdo ? 'A: SI' : 'A: NO';
+
+        },
+        rightKey: function () {
+
+            return this.zurdo ? 'L: NO' : 'L: SI';
 
         }
+
 
     },
 
@@ -10166,11 +10191,24 @@ const rootVm = new Vue({
 
             }
 
+            $('body').css({background:'url(/images/fixPoint.png) no-repeat center center #000'});
+
             this.section = 2;
 
             this.running = true;
 
-            this.launchItem();
+            setTimeout(function(){
+
+                this.launchItem();
+
+            }.bind(this), 2000);
+
+
+        },
+
+        showHome: function () {
+
+            this.section = 1;
 
         },
 
@@ -10189,9 +10227,7 @@ const rootVm = new Vue({
         showItem: function(){
 
 
-            this.itemText = this.items[this.itemActive].text;
-
-            this.response = '';
+            this.response = 2;
 
             this.itemVisible = true;
 
@@ -10199,9 +10235,6 @@ const rootVm = new Vue({
             
             this.startTimer();
 
-            setTimeout(function(){
-                $('#item-response').focus();
-            },250);
 
         },
 
@@ -10236,18 +10269,18 @@ const rootVm = new Vue({
             const reactionTime = Date.now() - this.itemTimestamp;
 
             this.responses.push({
-                item_id:this.items[this.itemActive].id,
-                text: this.response,
+                item_id:this.itemActive,
+                value: this.response,
                 reaction_time: reactionTime > (this.maxResponseTime * 1000) ? this.maxResponseTime * 1000 : reactionTime
             });
 
             this.itemVisible = false;
 
-            this.response = '';
+            this.response = 2;
 
             this.itemActive++;
 
-            if(this.items[this.itemActive]){
+            if(this.itemActive <= this.items){
 
                 return this.launchItem();
 
@@ -10263,6 +10296,9 @@ const rootVm = new Vue({
 
             this.section = 3;
 
+            $('body').css({background:'#e2e2e2'});
+
+
         },
 
         storeResponses: function(){
@@ -10271,13 +10307,13 @@ const rootVm = new Vue({
 
                 participant: {
                     age: this.age,
-                    region: this.region
+                    zurdo: this.zurdo
                 },
                 responses: this.responses
 
             };
 
-            $.post('/response', finalResponses, function (data) {
+            $.post('/response-emotions', finalResponses, function (data) {
 
                 if(data.status === 'ok'){
 
@@ -10296,6 +10332,34 @@ const rootVm = new Vue({
 
             this.section = 4;
 
+        },
+
+        preload: function () {
+
+            for(let i = 1; i<= this.items;i++){
+
+                this.images[i] = $("<img>").on('load', function () {
+
+                    this.itemsLoaded++;
+
+                    if(this.itemsLoaded >= this.items){
+
+                        this.showHome();
+
+                    }
+
+
+                }.bind(this)).on('error', function () {
+
+                    swal('Error al Cargar', 'No se ha podido cargar el instrumento. Actualice la Página.', 'error')
+
+                }).get(0);
+
+                this.images[i].src = '/images/final/' + i + '.jpg';
+
+
+            }
+
         }
 
     },
@@ -10304,8 +10368,31 @@ const rootVm = new Vue({
 
         window.timerInterval = '';
 
+        this.preload();
+
+        window.addEventListener('keyup', function(event) {
+
+
+            if(this.itemVisible && event.keyCode === 65){
+
+                this.response = this.zurdo ? 1 : 0;
+
+                this.saveResponse();
+
+            }
+
+            if(this.itemVisible && event.keyCode === 76){
+
+                this.response = this.zurdo ? 0 : 1;
+
+                this.saveResponse();
+
+            }
+
+        }.bind(this));
+
     }
 
 
 });
-//# sourceMappingURL=all.js.map
+//# sourceMappingURL=all-emotions.js.map

@@ -126,11 +126,6 @@ class EmotionsController extends Controller {
 		return $items;
 	}
 
-	public function index() {
-
-		return '';
-	}
-
 	public function generator() {
 
 		$items = \Cache::rememberForever('emotion_items', function () {
@@ -153,4 +148,14 @@ class EmotionsController extends Controller {
 
 	}
 
+	public function index() {
+
+		return view('emotions');
+	}
+
+	public function consentimiento(){
+
+		return view('consentimientoEmotions');
+
+	}
 }
