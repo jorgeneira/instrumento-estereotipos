@@ -74,8 +74,8 @@ class EmotionsController extends Controller {
 			$this->currentPosition = 1;
 		}
 
-		if($this->currentPosition === 4){
-			$this->currentPosition++;
+		if ($this->currentPosition === 4) {
+			$this->currentPosition ++;
 		}
 
 		return $item;
@@ -112,7 +112,7 @@ class EmotionsController extends Controller {
 
 	}
 
-	public function generateItems(){
+	public function generateItems() {
 
 		$codes = $this->getItemCodes();
 
@@ -154,25 +154,25 @@ class EmotionsController extends Controller {
 		return view('emotions');
 	}
 
-	public function consentimiento(){
+	public function consentimiento() {
 
 		return view('consentimientoEmotions');
 
 	}
 
 	public function store(Request $request) {
+		/*
+				$participant = new EmotionParticipant();
 
-		$participant = new EmotionParticipant();
+				$participant->edad   = $request->input('participant.age');
+				$participant->zurdo = $request->input('participant.zurdo');
+		
+				$participant->save();
 
-		$participant->edad   = $request->input('participant.age');
-		$participant->zurdo = $request->input('participant.zurdo');
-
-		$participant->save();
-
-		$participant->responses()->createMany($request->responses);
-
+				$participant->responses()->createMany($request->responses);
+		*/
 		return [
-			'status' => 'ok'
+			'status' => 'ok',
 		];
 
 
